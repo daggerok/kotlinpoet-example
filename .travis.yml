@@ -1,0 +1,30 @@
+env:
+  global:
+  - TERM=dumb
+
+language: java
+jdk: oraclejdk8
+
+install: true
+before_script:
+- sudo apt update -y >/dev/null 2>&1 || true
+- sudo apt install -y --no-install-recommends bash unzip >/dev/null 2>&1
+
+script:
+- bash gradlew >/dev/null 2>&1
+- java -jar ./build/libs/*-all.jar
+#
+- bash gradlew clean installDist >/dev/null 2>&1
+- bash ./build/install/kotlinpoet-example/bin/kotlinpoet-example
+#
+- bash gradlew clean distZip >/dev/null 2>&1
+- unzip -o ./build/distributions/kotlinpoet-example-0.0.1.zip -d /tmp
+- bash /tmp/kotlinpoet-example-0.0.1/bin/kotlinpoet-example
+#
+- bash mvnw clean package >/dev/null 2>&1
+- java -jar target/*-all.jar
+
+cache:
+  directories:
+  - $HOME/.m2
+  - $HOME/.gradle
