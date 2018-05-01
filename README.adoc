@@ -1,4 +1,4 @@
-= kotlinpoet-example
+= kotlinpoet-example image:https://travis-ci.org/daggerok/kotlinpoet-example.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/kotlinpoet-example"]
 
 //tag::content[]
 _example of using link:https://github.com/square/kotlinpoet[kotlinpoet] library_
